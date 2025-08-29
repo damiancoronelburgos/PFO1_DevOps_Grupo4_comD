@@ -1,1 +1,6 @@
-# PFO1_DevOps_Grupo4_comD
+Practica Formativa
+
+Coronel burgos damian
+Choque Sabrina
+Cubas Alejandro
+Castro Federico
