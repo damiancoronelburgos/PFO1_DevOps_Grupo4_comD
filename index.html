@@ -1,11 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DEV OPS</title>
-</head>
 <body>
-    <H1>Practica formativa</H1>
+  <h1>Perfil de usuario</h1>
+
+  <form id="f">
+    <label>Nombre de usuario:
+      <input name="usuario" required minlength="3" maxlength="20">
+    </label>
+    <br>
+    <label>Contraseña:
+      <input name="password" type="password" required minlength="6">
+    </label>
+    <br>
+    <button type="submit">Enviar</button>
+  </form>
+
+  <pre id="out"></pre>
+
+  <script>
+    document.getElementById('f').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new URLSearchParams(new FormData(e.target));
+      try {
+        const r = await fetch('backend/recibir.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: data.toString()
+        });
+        const text = await r.text();
+        document.getElementById('out').textContent = text;
+      } catch (err) {
+        document.getElementById('out').textContent = 'error: no se pudo enviar';
+      }
+    });
+  </script>
 </body>
-</html>
