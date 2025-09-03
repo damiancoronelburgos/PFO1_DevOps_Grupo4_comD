@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
@@ -31,8 +33,8 @@ function getParam(string $key): string {
 }
 
 // Solo permitir método POST
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    error_log("Acceso con método no permitido: " . $_SERVER['REQUEST_METHOD']);
+if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
+    error_log("Acceso con método no permitido: " . ($_SERVER['REQUEST_METHOD'] ?? ''));
     jsonResponse(405, ['status' => 'error', 'msg' => 'Método no permitido']);
 }
 
@@ -46,15 +48,15 @@ if ($usuario === '' || $password === '') {
 }
 
 // Validaciones simples
-if (strlen($usuario) < 5 || strlen($usuario) > 20) {
+if (mb_strlen($usuario) < 3 || mb_strlen($usuario) > 20) {
     error_log("Usuario inválido: '$usuario'");
-    jsonResponse(422, ['status' => 'error', 'msg' => 'El usuario debe tener entre 5 y 20 caracteres']);
+    jsonResponse(422, ['status' => 'error', 'msg' => 'El usuario debe tener entre 3 y 20 caracteres']);
 }
 
-if (strlen($password) < 6) {
+if (mb_strlen($password) < 6) {
     error_log("Contraseña demasiado corta para usuario '$usuario'");
     jsonResponse(422, ['status' => 'error', 'msg' => 'La contraseña debe tener al menos 6 caracteres']);
 }
 
 // Si pasa todas las validaciones
-jsonResponse(200, ['status' => 'ok']);
+jsonResponse(200, ['status' => 'ok', 'usuario' => $usuario]);
