@@ -3,14 +3,15 @@ Practica Formativa 1
 Grupo 4 - ComisionD
 
 Alumnos:
+
 Coronel burgos damian,
-userGit:damiancoronelburgos,
+userGit: damiancoronelburgos,
 
-Choque Sabrina,
-userGit:SabrinaChoque.
+Choque Sabrina, 
+ userGit: SabrinaChoque.
 
-Cubas Alejandro,
-userGit:AACubas.
+Cubas Alejandro, 
+ userGit: AACubas.
 
-Castro Federico,
-userGit:castrofederico93.
+Castro Federico, 
+ userGit: castrofederico93.
